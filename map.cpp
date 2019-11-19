@@ -4,14 +4,13 @@
 
 using namespace std;
 
-string Perso = ".";
 class map
 {
 private:
     int hauteur = 0;
     int largeur = 0;
-    char tab[50][50];
-
+    string tab[50][50];
+friend class Personne;
 public:
     map(int h, int l);
     void afficher();
@@ -25,19 +24,19 @@ map::map(int h, int l)
     {
         for (int j = 0; j < l; j++)
         {
-            tab[i][j] = '-';
+            tab[i][j] = "\u001b[48;5;46m-";
         }
     }
 
     for (int i = 0; i < h; i++)
     {
-        cout << endl;
+        cout <<"\u001b[0m"<< endl;
         for (int j = 0; j < l; j++)
         {
-            cout << tab[i][j] << ' ';   
+            cout <<tab[i][j] << ' ';
         }
     }
-    cout << endl;
+    cout <<"\u001b[0m"<<endl<<endl; 
 }
 
 void map::afficher()
@@ -49,8 +48,8 @@ class Personne
 private:
     int Pos_X = 0;
     int Pos_Y = 0;
-    const char Pers = 'X';
-    friend map;
+   // const char Pers = '\u001b[48;5;0m'+'X';
+
 
 public:
     Personne(int x, int y) : Pos_X(x), Pos_Y(y) {}
@@ -59,10 +58,16 @@ public:
 
 void Personne::move(map m, int x, int y)
 {
+   // m.tab[x,y] = Pers;
 }
 int main(int argc, char const *argv[])
 {
+
     map you(50, 50);
+    if (argc)
+    {
+        cout << argv[1] << endl;
+    }
 
     return 0;
 }
